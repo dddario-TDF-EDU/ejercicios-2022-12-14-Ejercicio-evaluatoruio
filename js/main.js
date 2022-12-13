@@ -11,63 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
         crearFilaEmpleado(dataEmpleados);  
     })
     .catch((error) => {
-    
+        alert("no funciono el fetch we");
     })
     
     function crearFilaEmpleado(listaEmpleados) {
          listaEmpleados.forEach(datosEmpleado => creandoFila(datosEmpleado))
-        //{
-        //     let filaEmpleado = document.createElement("tr");
-        //     let id = document.createElement("th");
-        //     id.innerText = datosEmpleado.id;
-        //     let name = document.createElement("td");
-        //     name.innerText = datosEmpleado.name;
-        //     name.classList.add("editable");
-        //     let city = document.createElement("td");
-        //     city.innerText = datosEmpleado.city;
-        //     city.classList.add("editable");
-        //     let birthday = document.createElement("td");
-        //     birthday.innerText = recortarBirthday(datosEmpleado.birthday);  
-        //     birthday.classList.add("editable"); 
-        //     let email = document.createElement("td");
-        //     email.innerText = datosEmpleado.email;
-        //     email.classList.add("editable");
-        //     let buttonEdit = document.createElement("button");
-        //     buttonEdit.innerText = "Editar";
-        //     buttonEdit.classList.add("boton");
-        //     let buttonDelete = document.createElement("button");
-        //     buttonDelete.innerText = "Eliminar";
-        //     buttonDelete.classList.add("boton");
-            
-        //     //procedo a juntar los componentes.
-        //     table.appendChild(filaEmpleado);
-        //     filaEmpleado.appendChild(id);
-        //     filaEmpleado.appendChild(name);
-        //     filaEmpleado.appendChild(city);
-        //     filaEmpleado.appendChild(birthday);
-        //     filaEmpleado.appendChild(email);
-        //     filaEmpleado.appendChild(buttonEdit);
-        //     filaEmpleado.appendChild(buttonDelete);
-        //     table.classList.add("estiloTabla");
-        //     //añadiendo funcionalidad editar
-        //     buttonEdit.addEventListener("click", () => {
-        //         let editables = buttonEdit.parentElement;
-        //         editables = editables.childNodes
-        //         if(buttonEdit.innerText == "Editar") {
-        //             editar(editables);
-        //             buttonEdit.innerText = "Aceptar";
-        //         } else {
-        //             terminarCambio(editables)
-        //             buttonEdit.innerText = "Editar";
-        //         }
-        //     });
-        //     //añadiendo funcionalidad eliminar
-        //     buttonDelete.addEventListener("click", () => {
-        //         filaEmpleado.remove();
-        //     })
-        // })
     }
-    //HAY Q REUTILIZAR EL BOTON...
 
     function editar(nodos) {
         nodos.forEach(elemento => {
@@ -81,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function terminarCambio(nodos) {
-        
         nodos.forEach(elemento => {
             if(elemento.className === "editable") {
                 let celdaFinal = document.createElement("td");
@@ -165,11 +113,10 @@ document.addEventListener("DOMContentLoaded", () => {
         let datobirthday = document.querySelector("#birthday").value;
         let datoEmail = document.querySelector("#email").value;
 
-        if(checkValores(nombre, ciudad, datobirthday, datoEmail) === true) {
-            let totalID = document.querySelectorAll("tbody th").length
-            let ultimoID = document.querySelectorAll("tbody th").item(totalID-1).innerText;
+        if(formCompleto(nombre, ciudad, datobirthday, datoEmail) === true) {
+            let ultimoID = document.querySelectorAll("tbody th").length
             let empleado = {
-                id : Number(ultimoID) + 1,
+                id : ultimoID + 1,
                 name : nombre,
                 city: ciudad,
                 birthday: datobirthday,
@@ -190,23 +137,23 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#email").value = "";
     }
 
-    function checkValores(pNombre, pCiudad, pBirthday, pEmail) {
-        if(nombre == "") {
+    function formCompleto(pNombre, pCiudad, pBirthday, pEmail) {
+        if(pNombre == "") {
             alert("no escribio el nombre");
             return false;
         }
 
-        if(ciudad == "") {
+        if(pCiudad == "") {
             alert("no escribio la ciudad");
             return false;
         }
 
-        if(birthday == "") {
+        if(pBirthday == "") {
             alert("no escribio la ciudad");
             return false;
         }
 
-        if(email == "") {
+        if(pEmail == "") {
             alert("no escribio la ciudad");
             return false;
         }
