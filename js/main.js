@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch(urlConsumida)
     .then((resupesta)=> resupesta.json())
     .then((dataEmpleados) => {
-        crearTablas(dataEmpleados);  
+        crearFilaEmpleado(dataEmpleados);  
     })
     .catch((error) => {
     
     })
     
-    function crearTablas(listaEmpleados) {
+    function crearFilaEmpleado(listaEmpleados) {
     listaEmpleados.forEach(datosEmpleado => {
         let filaEmpleado = document.createElement("tr");
         let id = document.createElement("th");
@@ -58,13 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 terminarCambio(editables)
                 buttonEdit.innerText = "Editar";
             }
-            
         });
         //añadiendo funcionalidad eliminar
         buttonDelete.addEventListener("click", () => {
             filaEmpleado.remove();
         })
-
     })
     
 
@@ -93,17 +91,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }); 
     };
             
- 
+    //el dato birthday viene con hora y detalles q no importan, se los sacamos.
     function recortarBirthday(pBirthday) {
             let fechaSalida = ""
             for (let index = 0; index < pBirthday.length; index++) {
-                if(pBirthday[index] == "T") {
-                    
+                if(pBirthday[index] == "T") {   
                     break;
                 } else {
                     fechaSalida+= pBirthday[index];
                 }
-                
             }
             return fechaSalida;
     }    
