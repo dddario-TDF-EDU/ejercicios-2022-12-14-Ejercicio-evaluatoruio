@@ -2,13 +2,38 @@
 
 body {
     box-sizing: border-box;
-    background-color: black;
+    background-color: rgb(61, 61, 131);
     color: rgb(25, 151, 128);
 }
 
 main {
     display: flex;
     justify-content: flex-start;
+}
+
+h1 {
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.form form {
+    background: linear-gradient(to bottom, rgb(43, 43, 105) 50%, rgb(40, 39, 142) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.botonAñadir {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .tabla {
