@@ -1,6 +1,10 @@
+import { alertASD } from "./alertLoco.js";
+ 
 document.addEventListener("DOMContentLoaded", () => {
     const urlConsumida = "https://6393e57e11ed187986bf9667.mockapi.io/api/curso/employees"
     
+    alertASD();
+
     let body = document.querySelector("body");
     let table = document.querySelector("tbody");
     let buttonAdd = document.querySelector(".botonAñadir"); 
@@ -114,19 +118,24 @@ document.addEventListener("DOMContentLoaded", () => {
         let datoEmail = document.querySelector("#email").value;
 
         if(formCompleto(nombre, ciudad, datobirthday, datoEmail) === true) {
-            let ultimoID = document.querySelectorAll("tbody th").length
+            let ultimaID = document.querySelectorAll("table th");
+            ultimaID = ultimaID[ultimaID.length - 1].innerText;
             let empleado = {
-                id : ultimoID + 1,
+                id : Number(ultimaID) + 1,
                 name : nombre,
                 city: ciudad,
                 birthday: datobirthday,
                 email: datoEmail
             }
             creandoFila(empleado);
+            alert("empleado añadido con exito");
+            limpiarForm();
+        } else {
+            alert("formulario incompleto")
         }
         
-        alert("empleado añadido con exito");
-        limpiarForm();
+        
+        
 
     })
 
@@ -139,22 +148,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function formCompleto(pNombre, pCiudad, pBirthday, pEmail) {
         if(pNombre == "") {
-            alert("no escribio el nombre");
             return false;
         }
 
         if(pCiudad == "") {
-            alert("no escribio la ciudad");
             return false;
         }
 
         if(pBirthday == "") {
-            alert("no escribio la ciudad");
             return false;
         }
 
         if(pEmail == "") {
-            alert("no escribio la ciudad");
             return false;
         }
 
